@@ -42,6 +42,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
 COPY docker-entrypoint.sh /
 RUN mkdir /docker-entrypoint-initdb.d
 COPY ./initdb.sh /docker-entrypoint-initdb.d/postgis.sh
+RUN chmod +x /docker-entrypoint.sh && chmod +x /docker-entrypoint-initdb.d/postgis.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
