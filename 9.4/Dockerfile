@@ -15,7 +15,6 @@ RUN curl -s https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
 ENV PG_MAJOR 9.4
 ENV POSTGIS_MAJOR 2.1
-ENV POSTGIS_VERSION 2.1.5+dfsg-1~exp2~90.git884bcd4.pgdg14.04+1
 
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' $PG_MAJOR > /etc/apt/sources.list.d/postgres.list
 
@@ -25,8 +24,8 @@ RUN apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		postgresql-$PG_MAJOR \
 		postgresql-contrib-$PG_MAJOR \
-		postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
-        postgis=$POSTGIS_VERSION
+		postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR \
+        postgis
 
 RUN mkdir -p /var/run/postgresql && chown -R postgres /var/run/postgresql
 
