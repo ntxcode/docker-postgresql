@@ -63,6 +63,8 @@ if [ "$1" = 'postgres' ]; then
 			done
 		fi
 	fi
+
+	sed -i.bak "s@shared_buffers = 128MB@shared_buffers = $SHARED_BUFFERS@g" $PGDATA/postgresql.conf
 	
 	exec gosu postgres "$@"
 fi
